@@ -1,0 +1,22 @@
+# Gradle & Build artifacts
+.gradle/
+build/
+app/build/
+ios/build/
+ios/Pods/
+ios/DerivedData/
+
+# Local configuration & secrets
+local.properties
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated build output files
+*.apk
+*.aab
+*.keystore
+!debug.keystore
