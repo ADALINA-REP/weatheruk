@@ -15,6 +15,12 @@ platform :ios do
       in_house: false
     )
 
+    get_provisioning_profile(
+      api_key: api_key,
+      app_identifier: "com.ukweather.liveradar",
+      type: "app-store"
+    )
+
     increment_build_number(
       build_number: ENV["GITHUB_RUN_NUMBER"] || "1",
       xcodeproj: "Runner.xcodeproj"
@@ -26,9 +32,9 @@ platform :ios do
       export_method: "app-store",
       output_directory: "./build",
       output_name: "WeatherUK.ipa",
-      xcargs: "-allowProvisioningUpdates DEVELOPMENT_TEAM=J1VCP8PGV8",
+      xcargs: "DEVELOPMENT_TEAM=J1VCP8PGV8 CODE_SIGN_STYLE=Manual",
       export_options: {
-        signingStyle: "automatic",
+        signingStyle: "manual",
         teamID: "J1VCP8PGV8"
       }
     )
