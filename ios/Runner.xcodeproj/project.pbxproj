@@ -180,7 +180,7 @@
 					};
 					97C146ED1CF9000F007C117D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = J1VCP8PGV8;
+						DevelopmentTeam = JTVCP8PGV8;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
@@ -374,7 +374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				DEVELOPMENT_TEAM = J1VCP8PGV8;
+				DEVELOPMENT_TEAM = JTVCP8PGV8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ukweather.liveradar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -554,7 +554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				DEVELOPMENT_TEAM = J1VCP8PGV8;
+				DEVELOPMENT_TEAM = JTVCP8PGV8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ukweather.liveradar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -577,7 +577,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				DEVELOPMENT_TEAM = J1VCP8PGV8;
+				DEVELOPMENT_TEAM = JTVCP8PGV8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ukweather.liveradar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
