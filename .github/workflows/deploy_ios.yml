@@ -55,7 +55,7 @@ jobs:
               <key>destination</key>
               <string>export</string>
               <key>method</key>
-              <string>app-store</string>
+              <string>app-store-connect</string>
               <key>teamID</key>
               <string>JTVCP8PGV8</string>
               <key>uploadSymbols</key>
