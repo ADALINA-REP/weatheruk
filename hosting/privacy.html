@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — ADALINA Applications</title>
+    <meta name="description" content="Official Privacy Policy for WeatherUK, FuelSense, SkyCast, and ADALINA applications.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --bg-card: rgba(21, 31, 56, 0.8);
+            --border-card: rgba(255, 255, 255, 0.12);
+            --accent-blue: #38bdf8;
+            --accent-cyan: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.15) 0%, transparent 45%);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: #000;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin: 2rem 0 1rem 0;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        .highlight-box {
+            background: rgba(56, 189, 248, 0.08);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-card);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="badge">Official Privacy Compliance</span>
+            <h1>Privacy Policy</h1>
+            <div class="last-updated">Last Updated: September 30, 2026</div>
+        </div>
+
+        <p>This Privacy Policy governs all applications developed by <strong>ADALINA / SISCOM</strong>, including <strong>WeatherUK</strong>, <strong>FuelSense</strong>, <strong>SkyCast</strong>, <strong>MeteoEspagne</strong>, and related applications published under our Apple Developer and Google Play accounts (collectively, "the Applications" or "our Services").</p>
+
+        <div class="highlight-box">
+            <p><strong>Core Privacy Guarantee:</strong> We value your privacy above all else. We do not collect, trade, rent, or sell your personal identity or information to third-party data brokers.</p>
+        </div>
+
+        <h2>1. Information Collection & Usage</h2>
+
+        <p><strong>A. Location Services Data</strong></p>
+        <p>Our Applications may request access to location data (GPS, cellular networks, or Wi-Fi positioning) to deliver essential app features, such as hyper-local weather predictions, severe storm alerts, rain radar maps, and nearby fuel price comparison.</p>
+        <ul>
+            <li>Location access is entirely optional and permission-based.</li>
+            <li>You can enable or disable location permissions at any time via your device settings.</li>
+            <li>Location coordinates are transmitted securely via HTTPS to query API endpoints in real-time and are <strong>never stored permanently</strong> on external servers.</li>
+        </ul>
+
+        <p><strong>B. Technical & Device Metrics</strong></p>
+        <p>Non-identifiable technical diagnostic data (such as OS version, device model, app crash logs, and display parameters) may be processed to ensure app stability and optimize performance.</p>
+
+        <h2>2. Third-Party Services & Integrations</h2>
+        <p>To provide accurate forecasts, map rendering, and app functionality, our Applications utilize trusted industry-standard SDKs and APIs:</p>
+        <ul>
+            <li><strong>Weather & Map Providers:</strong> Open-Meteo API, RainViewer Radar, Sunrise-Sunset API.</li>
+            <li><strong>Monetization & Diagnostics:</strong> Google AdMob and Firebase Analytics (operating strictly under Apple App Store and Google Play privacy guidelines).</li>
+        </ul>
+
+        <h2>3. Data Protection & Encryption</h2>
+        <p>All communication between our Applications and backend services is protected using <strong>HTTPS/TLS 1.3 protocol encryption</strong> to prevent unauthorized access or data interception.</p>
+
+        <h2>4. Children's Privacy</h2>
+        <p>Our Applications are designed for general audiences and do not knowingly collect or store personal data from children under 13 years of age.</p>
+
+        <h2>5. Contact Us</h2>
+        <p>If you have any questions or feedback regarding this Privacy Policy, please contact our privacy officer:</p>
+        <p>
+            <strong>Developer:</strong> ADALINA / SISCOM<br>
+            <strong>Email:</strong> <a href="mailto:chihabi.abdelilah.iga@gmail.com" style="color: var(--accent-blue);">chihabi.abdelilah.iga@gmail.com</a><br>
+            <strong>Website:</strong> <a href="https://fuelsense.fr" style="color: var(--accent-blue);">https://fuelsense.fr</a>
+        </p>
+
+        <div class="footer">
+            &copy; 2026 ADALINA / SISCOM. All rights reserved. | 
+            <a href="support.html">Support Center</a> | 
+            <a href="terms.html">Terms of Service</a>
+        </div>
+    </div>
+</body>
+</html>

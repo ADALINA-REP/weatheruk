@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Help Center — ADALINA Applications</title>
+    <meta name="description" content="Official Support and Help Center for WeatherUK, FuelSense, SkyCast, and ADALINA applications.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --bg-card: rgba(21, 31, 56, 0.8);
+            --border-card: rgba(255, 255, 255, 0.12);
+            --accent-blue: #38bdf8;
+            --accent-cyan: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.15) 0%, transparent 45%);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: #000;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin: 2rem 0 1rem 0;
+        }
+
+        .faq-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .faq-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: #000;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-contact:hover {
+            opacity: 0.9;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-card);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="badge">Support & Help Center</span>
+            <h1>How Can We Help You?</h1>
+            <div class="subtitle">Official Support Portal for WeatherUK, FuelSense & ADALINA Applications</div>
+        </div>
+
+        <div class="section-title">Frequently Asked Questions</div>
+
+        <div class="faq-card">
+            <div class="faq-question">🌧️ How do I enable live weather radar and location tracking?</div>
+            <div class="faq-answer">Open your device's <strong>Settings ➔ WeatherUK ➔ Location</strong> and select <em>"While Using the App"</em>. Ensure Notifications are enabled to receive storm and severe weather warnings.</div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">⚡ Why isn't the rain radar map updating?</div>
+            <div class="faq-answer">Check that your device has an active Wi-Fi or cellular network connection. If using a VPN or firewall, verify that network access to weather endpoints is permitted.</div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">📍 How do I add or manage favorite cities?</div>
+            <div class="faq-answer">Open the app menu, select <strong>Search / Cities</strong>, type any location, and tap the heart icon to save it directly to your home dashboard.</div>
+        </div>
+
+        <div class="contact-box">
+            <h2 style="color: var(--text-main); font-size: 1.35rem; margin-bottom: 0.5rem;">Need Assistance or Have a Request?</h2>
+            <p style="color: var(--text-muted);">Our customer support team is ready to assist you with any questions, feedback, or bug reports.</p>
+            <a href="mailto:chihabi.abdelilah.iga@gmail.com?subject=App%20Support%20Request" class="btn-contact">Contact Support Team</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 ADALINA / SISCOM. All rights reserved. | 
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a>
+        </div>
+    </div>
+</body>
+</html>
