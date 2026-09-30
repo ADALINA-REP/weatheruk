@@ -26,7 +26,7 @@ platform :ios do
       export_method: "app-store",
       output_directory: "./build",
       output_name: "WeatherUK.ipa",
-      xcargs: "DEVELOPMENT_TEAM=J1VCP8PGV8",
+      xcargs: "-allowProvisioningUpdates DEVELOPMENT_TEAM=J1VCP8PGV8",
       export_options: {
         signingStyle: "automatic",
         teamID: "J1VCP8PGV8"
