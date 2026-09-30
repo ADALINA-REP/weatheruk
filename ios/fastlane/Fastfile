@@ -15,10 +15,6 @@ platform :ios do
       in_house: false
     )
 
-    get_certificates(
-      api_key: api_key
-    )
-
     get_provisioning_profile(
       api_key: api_key,
       app_identifier: "com.ukweather.liveradar"
@@ -29,21 +25,16 @@ platform :ios do
       xcodeproj: "Runner.xcodeproj"
     )
 
-    profile_uuid = lane_context[SharedValues::SIGH_UUID] || lane_context[SharedValues::SIGH_NAME]
-
     build_app(
       scheme: "Runner",
       workspace: "Runner.xcworkspace",
       export_method: "app-store",
       output_directory: "./build",
       output_name: "WeatherUK.ipa",
-      xcargs: "DEVELOPMENT_TEAM=J1VCP8PGV8 CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='#{profile_uuid}'",
+      xcargs: "-allowProvisioningUpdates DEVELOPMENT_TEAM=J1VCP8PGV8",
       export_options: {
-        signingStyle: "manual",
-        teamID: "J1VCP8PGV8",
-        provisioningProfiles: {
-          "com.ukweather.liveradar" => profile_uuid
-        }
+        signingStyle: "automatic",
+        teamID: "J1VCP8PGV8"
       }
     )
 
