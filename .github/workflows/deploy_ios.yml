@@ -37,8 +37,10 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Install Flutter Dependencies
-        run: flutter pub get
+      - name: Install Flutter Dependencies & Build iOS Release
+        run: |
+          flutter pub get
+          flutter build ios --release --no-codesign
 
       - name: Decode App Store Connect API Key
         env:
