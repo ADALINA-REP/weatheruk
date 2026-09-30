@@ -84,7 +84,7 @@ jobs:
             -authenticationKeyPath "$KEY_PATH" \
             -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
             -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
-            archive DEVELOPMENT_TEAM="J1VCP8PGV8" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+            archive DEVELOPMENT_TEAM="J1VCP8PGV8"
 
           find build/Runner.xcarchive/Products/Applications/Runner.app/Frameworks -mindepth 1 -maxdepth 1 2>/dev/null | while read -r fw; do
             echo "Pre-signing framework: $fw"
