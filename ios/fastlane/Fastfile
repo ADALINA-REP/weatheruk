@@ -20,8 +20,8 @@ platform :ios do
     )
 
     build_app(
-      scheme: "WeatherUK",
-      workspace: "WeatherUK.xcworkspace",
+      scheme: "Runner",
+      workspace: "Runner.xcworkspace",
       export_method: "app-store",
       output_directory: "./build",
       output_name: "WeatherUK.ipa",
