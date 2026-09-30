@@ -36,7 +36,11 @@ jobs:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
-          echo "$APP_STORE_CONNECT_API_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
+          if [[ "$APP_STORE_CONNECT_API_KEY" == "-----BEGIN"* ]]; then
+            echo "$APP_STORE_CONNECT_API_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
+          else
+            echo -n "$APP_STORE_CONNECT_API_KEY" | base64 --decode > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
+          fi
 
       - name: Build iOS Frameworks & Assets
         run: flutter build ios --release --no-codesign
@@ -51,7 +55,7 @@ jobs:
               <key>destination</key>
               <string>export</string>
               <key>method</key>
-              <string>app-store-connect</string>
+              <string>app-store</string>
               <key>teamID</key>
               <string>J1VCP8PGV8</string>
               <key>uploadSymbols</key>
