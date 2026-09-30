@@ -29,16 +29,21 @@ platform :ios do
       xcodeproj: "Runner.xcodeproj"
     )
 
+    profile_name = lane_context[SharedValues::SIGH_NAME] || "com.ukweather.liveradar AppStore"
+
     build_app(
       scheme: "Runner",
       workspace: "Runner.xcworkspace",
       export_method: "app-store",
       output_directory: "./build",
       output_name: "WeatherUK.ipa",
-      xcargs: "DEVELOPMENT_TEAM=J1VCP8PGV8 CODE_SIGN_STYLE=Manual",
+      xcargs: "DEVELOPMENT_TEAM=J1VCP8PGV8 CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='#{profile_name}'",
       export_options: {
         signingStyle: "manual",
-        teamID: "J1VCP8PGV8"
+        teamID: "J1VCP8PGV8",
+        provisioningProfiles: {
+          "com.ukweather.liveradar" => profile_name
+        }
       }
     )
 
