@@ -26,7 +26,7 @@ Welcome to the Official Support & Help Center for **ADALINA / SISCOM Weather App
 
 If you experience any issues, encounter a bug, or have a feature request:
 
-- **Email Support:** `chihabi.abdelilah.iga@gmail.com`
+- **Email Support:** `siscom.info@gmail.com`
 - **Developer Organization:** ADALINA / SISCOM
 - **Response Time:** We strive to respond to all support inquiries within 24 to 48 hours.
 

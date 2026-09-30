@@ -55,5 +55,5 @@ Under applicable privacy regulations (including GDPR and CCPA):
 If you have any questions, feedback, or privacy inquiries regarding our Applications, please reach out to us:
 
 - **Developer:** ADALINA / SISCOM
-- **Email:** `chihabi.abdelilah.iga@gmail.com`
+- **Email:** `siscom.info@gmail.com`
 - **Support Repository:** [GitHub Support Hub](https://github.com/ADALINA-REP/weatheruk)
