@@ -37,10 +37,10 @@
                 tools:node="remove" />
         </provider>
         
-        <!-- Sample AdMob App ID per official instructions for testing -->
+        <!-- Production AdMob App ID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3159418819762571~3766115453"/>
+            android:value="ca-app-pub-9046523366518719~9727487174"/>
             
         <meta-data
             android:name="com.google.android.geo.API_KEY"
