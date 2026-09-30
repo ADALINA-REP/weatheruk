@@ -32,6 +32,7 @@ jobs:
           working-directory: 'ios'
 
       - name: Install Apple Certificates & Provisioning Profiles
+        if: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 != '' }}
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 }}
           P12_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}
