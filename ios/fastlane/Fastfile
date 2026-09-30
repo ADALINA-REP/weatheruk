@@ -26,10 +26,10 @@ platform :ios do
       export_method: "app-store",
       output_directory: "./build",
       output_name: "WeatherUK.ipa",
+      xcargs: "DEVELOPMENT_TEAM=J1VCP8PGV8",
       export_options: {
-        provisioningProfiles: {
-          ENV["BUNDLE_IDENTIFIER"] => ENV["PROVISIONING_PROFILE_NAME"] || "WeatherUK AppStore"
-        }
+        signingStyle: "automatic",
+        teamID: "J1VCP8PGV8"
       }
     )
 
