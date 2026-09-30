@@ -2,34 +2,23 @@ name: Deploy iOS to App Store Connect
 
 on:
   push:
-    branches:
-      - main
-      - release/ios
+    branches: [ main ]
   workflow_dispatch:
-    inputs:
-      submit_to_testflight:
-        description: 'Upload build to TestFlight / App Store Connect'
-        required: true
-        type: boolean
-        default: true
 
 jobs:
-  build-and-deploy-ios:
-    runs-on: macos-14
+  build_and_deploy_ios:
+    name: Build & Deploy iOS to TestFlight / App Store
+    runs-on: macos-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Select Xcode Version
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
-
-      - name: Set up Ruby & Fastlane
-        uses: ruby/setup-ruby@v1
+      - name: Set up Java JDK
+        uses: actions/setup-java@v4
         with:
-          ruby-version: '3.2'
-          bundler-cache: true
-          working-directory: 'ios'
+          distribution: 'zulu'
+          java-version: '17'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -37,28 +26,82 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Install Flutter Dependencies & Build iOS Release
-        run: |
-          flutter pub get
-          flutter build ios --release --no-codesign
+      - name: Install Dependencies
+        run: flutter pub get
 
-      - name: Decode App Store Connect API Key
+      - name: Set up App Store Connect API Key
         env:
-          APP_STORE_CONNECT_API_KEY_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY || secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
-          KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
-          if [[ "$APP_STORE_CONNECT_API_KEY_BASE64" == "-----BEGIN"* ]]; then
-            echo "$APP_STORE_CONNECT_API_KEY_BASE64" > ~/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8
-          else
-            echo -n "$APP_STORE_CONNECT_API_KEY_BASE64" | base64 --decode > ~/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8
-          fi
+          echo "$APP_STORE_CONNECT_API_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
 
-      - name: Build & Upload via Fastlane
-        working-directory: ios
-        env:
-          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          BUNDLE_IDENTIFIER: ${{ secrets.BUNDLE_IDENTIFIER || 'com.ukweather.liveradar' }}
+      - name: Build iOS Frameworks & Assets
+        run: flutter build ios --release --no-codesign
+
+      - name: Create ExportOptions.plist
         run: |
-          bundle exec fastlane release
+          cat <<EOF > ios/ExportOptions.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>destination</key>
+              <string>export</string>
+              <key>method</key>
+              <string>app-store-connect</string>
+              <key>teamID</key>
+              <string>J1VCP8PGV8</string>
+              <key>uploadSymbols</key>
+              <true/>
+              <key>manageAppVersionAndBuildNumber</key>
+              <true/>
+              <key>signingStyle</key>
+              <string>automatic</string>
+          </dict>
+          </plist>
+          EOF
+
+      - name: Archive and Export Signed IPA
+        env:
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+        run: |
+          KEY_PATH="$HOME/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8"
+          
+          xcodebuild -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/Runner.xcarchive \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$KEY_PATH" \
+            -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
+            -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
+            archive DEVELOPMENT_TEAM="J1VCP8PGV8" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+
+          find build/Runner.xcarchive/Products/Applications/Runner.app/Frameworks -mindepth 1 -maxdepth 1 2>/dev/null | while read -r fw; do
+            echo "Pre-signing framework: $fw"
+            codesign --force --verbose --sign "-" "$fw" || true
+          done
+
+          xcodebuild -exportArchive \
+            -archivePath build/Runner.xcarchive \
+            -exportOptionsPlist ios/ExportOptions.plist \
+            -exportPath build/ios/ipa \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$KEY_PATH" \
+            -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
+            -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
+            OTHER_CODE_SIGN_FLAGS="--deep"
+
+      - name: Upload IPA to App Store Connect
+        env:
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+        run: |
+          IPA_FILE=$(find build/ios/ipa -name "*.ipa" | head -n 1)
+          echo "Uploading $IPA_FILE to App Store Connect..."
+          xcrun altool --upload-app -f "$IPA_FILE" -t ios --apiKey "$APP_STORE_CONNECT_KEY_ID" --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"
