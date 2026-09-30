@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADALINA Apps — Smart Weather Radar & Daily Utility Apps</title>
+    <meta name="description" content="Discover WeatherUK, FuelSense, and SkyCast. Premium weather radar, live rain alerts, 14-day forecasts, and smart fuel price tracking applications.">
+    <meta name="keywords" content="WeatherUK, Weather Radar, Live Rain Forecast, UK Storm Alerts, FuelSense, SkyCast, Meteo, ADALINA Apps">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ADALINA Apps — Smart Weather Radar & Daily Utility Apps">
+    <meta property="og:description" content="Precision weather forecasts, live HD rain radar maps, and smart everyday utility tools for mobile devices.">
+    <meta property="og:url" content="https://fuelsense.fr/marketing.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --bg-card: rgba(21, 31, 56, 0.7);
+            --border-card: rgba(255, 255, 255, 0.12);
+            --accent-blue: #38bdf8;
+            --accent-cyan: #06b6d4;
+            --accent-indigo: #6366f1;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.18) 0%, transparent 50%);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 3rem auto 5rem auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .badge-hero {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.25rem;
+            font-weight: 900;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.25rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: #000;
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .features-grid {
+            max-width: 1100px;
+            margin: 0 auto 6rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 2.25rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .apps-section {
+            max-width: 1100px;
+            margin: 0 auto 6rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .app-row {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+        }
+
+        .app-info h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .app-info p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border-card);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.75rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="brand-logo">ADALINA APPS</a>
+        <div class="nav-links">
+            <a href="#apps">Our Apps</a>
+            <a href="support.html">Support</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <span class="badge-hero">Next-Generation Mobile Apps</span>
+        <h1>Hyper-Local Radar & Smart Daily Utilities</h1>
+        <p>Experience ultra-accurate weather radar tracking, live storm notifications, and intelligent fuel management with ADALINA applications.</p>
+        <div class="cta-buttons">
+            <a href="#apps" class="btn btn-primary">
+                <span> Explore iOS Apps</span>
+            </a>
+            <a href="support.html" class="btn btn-secondary">
+                <span>💬 Get Support</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🌧️</div>
+            <h3>Live HD Rain Radar</h3>
+            <p>High-definition radar overlay updated in real-time. Track precipitation, snow forecasts, and storm paths with precision.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Weather Alerts</h3>
+            <p>Receive proactive notifications for sudden downpours, severe weather warnings, and temperature shifts before stepping outside.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⛽</div>
+            <h3>FuelSense Optimizer</h3>
+            <p>Locate the cheapest fuel stations near you, compare real-time diesel and petrol prices, and optimize your weekly refuels.</p>
+        </div>
+    </section>
+
+    <section class="apps-section" id="apps">
+        <div class="section-header">
+            <h2>Our Featured Applications</h2>
+            <p style="color: var(--text-muted);">Crafted with passion for iOS & Android</p>
+        </div>
+
+        <div class="app-row">
+            <div class="app-info">
+                <h3>WeatherUK — Live Radar & Forecast</h3>
+                <p>Designed specifically for the UK climate. Features live rainfall radar, hourly forecast breakdown, UV index, wind speed, and severe weather warnings for all regions across England, Scotland, Wales, and Northern Ireland.</p>
+                <a href="support.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">App Store Support Page</a>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px dashed var(--border-card); border-radius: 16px; padding: 2rem; text-align: center; color: var(--accent-cyan); font-weight: 700;">
+                🌤️ WeatherUK App Showcase
+            </div>
+        </div>
+
+        <div class="app-row">
+            <div class="app-info">
+                <h3>FuelSense — Smart Price Tracker</h3>
+                <p>Compare local fuel costs, track price trends across nearby service stations, and save money every time you fill up your vehicle.</p>
+                <a href="https://fuelsense.fr" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Visit FuelSense.fr</a>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px dashed var(--border-card); border-radius: 16px; padding: 2rem; text-align: center; color: var(--accent-blue); font-weight: 700;">
+                ⛽ FuelSense Station Radar
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="marketing.html">Marketing Page</a> | 
+            <a href="support.html">Support Center</a> | 
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a>
+        </div>
+        <p>&copy; 2026 ADALINA / SISCOM. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Contact: <a href="mailto:siscom.info@gmail.com" style="color: var(--accent-blue);">siscom.info@gmail.com</a></p>
+    </footer>
+</body>
+</html>
