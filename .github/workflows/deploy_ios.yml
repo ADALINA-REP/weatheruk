@@ -30,7 +30,10 @@ jobs:
         run: flutter config --no-enable-swift-package-manager
 
       - name: Install Dependencies
-        run: flutter pub get
+        run: |
+          flutter precache --ios
+          flutter pub get
+          flutter build ios --config-only --release
 
       - name: Set up App Store Connect API Key
         env:
@@ -49,9 +52,8 @@ jobs:
           else
             echo -n "$APP_STORE_CONNECT_API_KEY" | base64 --decode > "$TARGET_FILE"
           fi
-
-      - name: Build iOS Frameworks & Assets
-        run: flutter build ios --release --no-codesign
+          mkdir -p "$HOME/private_keys"
+          cp "$TARGET_FILE" "$HOME/private_keys/AuthKey_${CLEAN_KEY_ID}.p8"
 
       - name: Create ExportOptions.plist
         run: |
@@ -76,7 +78,19 @@ jobs:
           </plist>
           EOF
 
-      - name: Archive and Export Signed IPA
+      - name: Build IPA via Flutter
+        env:
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+        run: |
+          BUILD_NUM=$((14 + GITHUB_RUN_NUMBER))
+          echo "Building iOS IPA with dynamic build number: $BUILD_NUM"
+          flutter build ipa --release \
+            --build-number=$BUILD_NUM \
+            --export-options-plist=ios/ExportOptions.plist
+
+      - name: Upload IPA to App Store Connect / TestFlight
         env:
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
@@ -89,47 +103,9 @@ jobs:
           if [ -z "$CLEAN_ISSUER_ID" ]; then
             CLEAN_ISSUER_ID="b4575c22-8a31-4f97-bed4-889e3c21a7b5"
           fi
-          KEY_PATH="$HOME/.appstoreconnect/private_keys/AuthKey_${CLEAN_KEY_ID}.p8"
-          
-          xcodebuild -workspace ios/Runner.xcworkspace \
-            -scheme Runner \
-            -configuration Release \
-            -destination 'generic/platform=iOS' \
-            -archivePath build/Runner.xcarchive \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath "$KEY_PATH" \
-            -authenticationKeyID "$CLEAN_KEY_ID" \
-            -authenticationKeyIssuerID "$CLEAN_ISSUER_ID" \
-            archive DEVELOPMENT_TEAM="JTVCP8PGV8" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
-
-          find build/Runner.xcarchive/Products/Applications/Runner.app/Frameworks -mindepth 1 -maxdepth 1 2>/dev/null | while read -r fw; do
-            echo "Pre-signing framework: $fw"
-            codesign --force --verbose --sign "-" "$fw" || true
-          done
-
-          xcodebuild -exportArchive \
-            -archivePath build/Runner.xcarchive \
-            -exportOptionsPlist ios/ExportOptions.plist \
-            -exportPath build/ios/ipa \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath "$KEY_PATH" \
-            -authenticationKeyID "$CLEAN_KEY_ID" \
-            -authenticationKeyIssuerID "$CLEAN_ISSUER_ID" \
-            OTHER_CODE_SIGN_FLAGS="--deep"
-
-      - name: Upload IPA to App Store Connect
-        env:
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-        run: |
-          CLEAN_KEY_ID=$(echo "${APP_STORE_CONNECT_KEY_ID}" | grep -oE '[A-Z0-9]{10}' | head -n 1)
-          if [ -z "$CLEAN_KEY_ID" ]; then
-            CLEAN_KEY_ID="9HC3ZFHYQ7"
+          IPA_FILE=$(find build/ios/ipa -name "*.ipa" 2>/dev/null | head -n 1)
+          if [ -z "$IPA_FILE" ]; then
+            IPA_FILE=$(find build/ios -name "*.ipa" 2>/dev/null | head -n 1)
           fi
-          CLEAN_ISSUER_ID=$(echo "${APP_STORE_CONNECT_ISSUER_ID}" | grep -oE '[a-fA-F0-9-]{36}' | head -n 1)
-          if [ -z "$CLEAN_ISSUER_ID" ]; then
-            CLEAN_ISSUER_ID="b4575c22-8a31-4f97-bed4-889e3c21a7b5"
-          fi
-          IPA_FILE=$(find build/ios/ipa -name "*.ipa" | head -n 1)
           echo "Uploading $IPA_FILE to App Store Connect..."
-          xcrun altool --upload-app -f "$IPA_FILE" -t ios --apiKey "$CLEAN_KEY_ID" --apiIssuer "$CLEAN_ISSUER_ID"
+          xcrun altool --upload-app -f "$IPA_FILE" -t ios --apiKey "$CLEAN_KEY_ID" --apiIssuer "$CLEAN_ISSUER_ID" --verbose
