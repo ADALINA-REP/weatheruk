@@ -1,3 +1,8 @@
+# Flutter artifacts
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
 # Gradle & Build artifacts
 .gradle/
 build/
