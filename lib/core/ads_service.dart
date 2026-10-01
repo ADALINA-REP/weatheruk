@@ -7,6 +7,7 @@ class AdsService {
   static bool _initialized = false;
 
   static String get bannerAdUnitId => AdHelper.bannerAdUnitId;
+  static String get largeBannerAdUnitId => AdHelper.largeBannerAdUnitId;
   static String get interstitialAdUnitId => AdHelper.interstitialAdUnitId;
 
   static Future<void> initialize() async {

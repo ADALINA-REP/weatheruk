@@ -42,9 +42,10 @@ class _AdBannerState extends State<AdBanner> {
 
   void _loadAd() {
     final adSize = widget.type == AdType.largeSquare ? AdSize.mediumRectangle : AdSize.banner;
+    final adUnitId = widget.type == AdType.largeSquare ? AdsService.largeBannerAdUnitId : AdsService.bannerAdUnitId;
     
     _bannerAd = BannerAd(
-      adUnitId: AdsService.bannerAdUnitId,
+      adUnitId: adUnitId,
       request: const AdRequest(),
       size: adSize,
       listener: BannerAdListener(
