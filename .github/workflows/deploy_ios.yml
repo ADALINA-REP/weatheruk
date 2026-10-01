@@ -78,17 +78,43 @@ jobs:
           </plist>
           EOF
 
-      - name: Build IPA via Flutter
+      - name: Build Unsigned IPA Archive via Flutter
+        run: |
+          BUILD_NUM=$((14 + GITHUB_RUN_NUMBER))
+          echo "Building iOS archive with dynamic build number: $BUILD_NUM"
+          flutter build ipa --release --no-codesign --build-number=$BUILD_NUM
+
+      - name: Export Signed IPA via App Store Connect API Key
         env:
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
         run: |
-          BUILD_NUM=$((14 + GITHUB_RUN_NUMBER))
-          echo "Building iOS IPA with dynamic build number: $BUILD_NUM"
-          flutter build ipa --release \
-            --build-number=$BUILD_NUM \
-            --export-options-plist=ios/ExportOptions.plist
+          CLEAN_KEY_ID=$(echo "${APP_STORE_CONNECT_KEY_ID}" | grep -oE '[A-Z0-9]{10}' | head -n 1)
+          if [ -z "$CLEAN_KEY_ID" ]; then
+            CLEAN_KEY_ID="9HC3ZFHYQ7"
+          fi
+          CLEAN_ISSUER_ID=$(echo "${APP_STORE_CONNECT_ISSUER_ID}" | grep -oE '[a-fA-F0-9-]{36}' | head -n 1)
+          if [ -z "$CLEAN_ISSUER_ID" ]; then
+            CLEAN_ISSUER_ID="b4575c22-8a31-4f97-bed4-889e3c21a7b5"
+          fi
+          KEY_PATH="$HOME/.appstoreconnect/private_keys/AuthKey_${CLEAN_KEY_ID}.p8"
+
+          ARCHIVE_PATH=$(find build/ios -name "*.xcarchive" -type d 2>/dev/null | head -n 1)
+          if [ -z "$ARCHIVE_PATH" ]; then
+            ARCHIVE_PATH="build/ios/archive/Runner.xcarchive"
+          fi
+          echo "Found xcarchive at: $ARCHIVE_PATH"
+
+          mkdir -p build/ios/ipa
+
+          xcodebuild -exportArchive \
+            -archivePath "$ARCHIVE_PATH" \
+            -exportOptionsPlist ios/ExportOptions.plist \
+            -exportPath build/ios/ipa \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$KEY_PATH" \
+            -authenticationKeyID "$CLEAN_KEY_ID" \
+            -authenticationKeyIssuerID "$CLEAN_ISSUER_ID"
 
       - name: Upload IPA to App Store Connect / TestFlight
         env:
