@@ -80,7 +80,7 @@ jobs:
 
       - name: Build Unsigned IPA Archive via Flutter
         run: |
-          BUILD_NUM=$((14 + GITHUB_RUN_NUMBER))
+          BUILD_NUM=$((58 + GITHUB_RUN_NUMBER))
           echo "Building iOS archive with dynamic build number: $BUILD_NUM"
           flutter build ipa --release --no-codesign --build-number=$BUILD_NUM
 
