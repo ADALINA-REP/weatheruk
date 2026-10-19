@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support & Help Center — ADALINA Applications</title>
-    <meta name="description" content="Official Support and Help Center for WeatherUK, FuelSense, SkyCast, and ADALINA applications.">
+    <title>Support & Help Center — ADALINA / SISCOM Applications</title>
+    <meta name="description" content="Official Support and Help Center for Tiempo España, WeatherUK, USA Weather, Météo France, FuelSense, and ADALINA / SISCOM applications.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,11 +19,7 @@
             --text-muted: #94a3b8;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -78,10 +74,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
+        .subtitle { color: var(--text-muted); font-size: 1rem; }
 
         .section-title {
             font-size: 1.35rem;
@@ -137,9 +130,7 @@
             transition: opacity 0.2s ease;
         }
 
-        .btn-contact:hover {
-            opacity: 0.9;
-        }
+        .btn-contact:hover { opacity: 0.9; }
 
         .footer {
             margin-top: 3rem;
@@ -157,51 +148,61 @@
         }
 
         @media (max-width: 640px) {
-            .container {
-                padding: 1.5rem;
-                border-radius: 16px;
-            }
-            h1 {
-                font-size: 1.75rem;
-            }
+            .container { padding: 1.5rem; border-radius: 16px; }
+            h1 { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <span class="badge">Support & Help Center</span>
+            <span class="badge">Official Support & Help Center</span>
             <h1>How Can We Help You?</h1>
-            <div class="subtitle">Official Support Portal for WeatherUK, FuelSense & ADALINA Applications</div>
+            <div class="subtitle">Support Portal for all ADALINA & SISCOM Applications (iOS & Android)</div>
         </div>
 
-        <div class="section-title">Frequently Asked Questions</div>
+        <div class="section-title">Frequently Asked Questions (FAQ)</div>
 
         <div class="faq-card">
-            <div class="faq-question">🌧️ How do I enable live weather radar and location tracking?</div>
-            <div class="faq-answer">Open your device's <strong>Settings ➔ WeatherUK ➔ Location</strong> and select <em>"While Using the App"</em>. Ensure Notifications are enabled to receive storm and severe weather warnings.</div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-question">⚡ Why isn't the rain radar map updating?</div>
-            <div class="faq-answer">Check that your device has an active Wi-Fi or cellular network connection. If using a VPN or firewall, verify that network access to weather endpoints is permitted.</div>
+            <div class="faq-question">🇪🇸 Tiempo España: ¿Cómo activar la localización y el radar en vivo?</div>
+            <div class="faq-answer">En tu iPhone o teléfono Android, abre <strong>Ajustes ➔ Tiempo España ➔ Localización</strong> y elige <em>"Al usar la app"</em>. La aplicación centrará automáticamente el radar de lluvia y los pronósticos en tu municipio.</div>
         </div>
 
         <div class="faq-card">
-            <div class="faq-question">📍 How do I add or manage favorite cities?</div>
-            <div class="faq-answer">Open the app menu, select <strong>Search / Cities</strong>, type any location, and tap the heart icon to save it directly to your home dashboard.</div>
+            <div class="faq-question">🌧️ Why isn't the rain radar map updating?</div>
+            <div class="faq-answer">Radar maps require an active internet connection to load tiles. Check that cellular data or Wi-Fi is enabled. If you use an ad-blocker or VPN, ensure it does not block map tile CDN endpoints.</div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">📍 How do I search and save favorite locations?</div>
+            <div class="faq-answer">Tap the <strong>Search / Cities</strong> tab in the navigation bar, search for any city, town, or province across Spain, the UK, the US, or France, and tap the heart icon to pin it to your dashboard.</div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">🔔 How do I enable severe weather notifications?</div>
+            <div class="faq-answer">Make sure Notifications are enabled in your device system settings for the application. Our weather apps alert you when high precipitation, storms, or severe weather conditions are detected in your area.</div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">⛽ FuelSense: How are fuel prices refreshed?</div>
+            <div class="faq-answer">FuelSense synchronizes daily with official governmental open-data repositories. Stations are filtered by proximity and price per liter for Diesel, SP95, SP98, E85, and LPG.</div>
+        </div>
+
+        <div class="faq-card">
+            <div class="faq-question">🗑️ How can I request data or cache deletion?</div>
+            <div class="faq-answer">Our applications do not require user accounts. To delete locally stored cached preferences and favorites, simply clear the app cache in device settings or uninstall the app. For any privacy requests, you can email our support team directly.</div>
         </div>
 
         <div class="contact-box">
-            <h2 style="color: var(--text-main); font-size: 1.35rem; margin-bottom: 0.5rem;">Need Assistance or Have a Request?</h2>
-            <p style="color: var(--text-muted);">Our customer support team is ready to assist you with any questions, feedback, or bug reports.</p>
-            <a href="mailto:siscom.info@gmail.com?subject=App%20Support%20Request" class="btn-contact">Contact Support Team</a>
+            <h2 style="color: var(--text-main); font-size: 1.35rem; margin-bottom: 0.5rem;">Have a Question or Need Technical Assistance?</h2>
+            <p style="color: var(--text-muted);">Our developer support team replies to all inquiries within 24 to 48 hours.</p>
+            <a href="mailto:siscom.info@gmail.com?subject=App%20Support%20Request" class="btn-contact">Contact Support (siscom.info@gmail.com)</a>
         </div>
 
         <div class="footer">
             &copy; 2026 ADALINA / SISCOM. All rights reserved. | 
-            <a href="privacy.html">Privacy Policy</a> | 
-            <a href="terms.html">Terms of Service</a>
+            <a href="marketing.html">Marketing Portfolio</a> | 
+            <a href="privacy.html">Privacy Policy</a>
         </div>
     </div>
 </body>

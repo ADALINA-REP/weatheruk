@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — ADALINA Applications</title>
-    <meta name="description" content="Official Privacy Policy for WeatherUK, FuelSense, SkyCast, and ADALINA applications.">
+    <title>Privacy Policy — ADALINA / SISCOM Applications</title>
+    <meta name="description" content="Official Privacy Policy for Tiempo España, WeatherUK, USA Weather, Météo France, FuelSense, and ADALINA / SISCOM applications.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,11 +19,7 @@
             --text-muted: #94a3b8;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -78,10 +74,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .last-updated {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        .last-updated { color: var(--text-muted); font-size: 0.95rem; }
 
         h2 {
             font-size: 1.35rem;
@@ -90,24 +83,10 @@
             margin: 2rem 0 1rem 0;
         }
 
-        p, li {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        strong {
-            color: var(--text-main);
-        }
+        p, li { color: var(--text-muted); font-size: 1rem; margin-bottom: 1rem; }
+        ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        strong { color: var(--text-main); }
 
         .highlight-box {
             background: rgba(56, 189, 248, 0.08);
@@ -132,73 +111,81 @@
             margin: 0 0.5rem;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
+        .footer a:hover { text-decoration: underline; }
 
         @media (max-width: 640px) {
-            .container {
-                padding: 1.5rem;
-                border-radius: 16px;
-            }
-            h1 {
-                font-size: 1.75rem;
-            }
+            .container { padding: 1.5rem; border-radius: 16px; }
+            h1 { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <span class="badge">Official Privacy Compliance</span>
+            <span class="badge">Privacy Policy & Data Protection</span>
             <h1>Privacy Policy</h1>
-            <div class="last-updated">Last Updated: September 30, 2026</div>
+            <div class="last-updated">Effective Date: October 10, 2026</div>
         </div>
 
-        <p>This Privacy Policy governs all applications developed by <strong>ADALINA / SISCOM</strong>, including <strong>WeatherUK</strong>, <strong>FuelSense</strong>, <strong>SkyCast</strong>, <strong>MeteoEspagne</strong>, and related applications published under our Apple Developer and Google Play accounts (collectively, "the Applications" or "our Services").</p>
+        <p>This Privacy Policy applies to all mobile and web applications developed, published, and maintained by <strong>ADALINA / SISCOM</strong> across the <strong>Apple App Store</strong> and <strong>Google Play Store</strong>, including but not limited to:</p>
+        <ul>
+            <li><strong>Tiempo España — Spain Weather & Radar</strong> (<code>com.SpainWeather.TiempoEspana</code>)</li>
+            <li><strong>WeatherUK — Live Radar & Forecast</strong> (<code>com.ukweather.live</code>)</li>
+            <li><strong>USA Weather & Radar Tracker</strong> (<code>com.usaweather.live</code>)</li>
+            <li><strong>Météo France — Radar Pluie & Prévisions</strong></li>
+            <li><strong>FuelSense — Price Tracker & Navigation</strong></li>
+        </ul>
+        <p>Collectively referred to as "the Applications" or "our Services". We respect user privacy and are fully committed to protecting any information processed through our apps.</p>
 
         <div class="highlight-box">
-            <p><strong>Core Privacy Guarantee:</strong> We value your privacy above all else. We do not collect, trade, rent, or sell your personal identity or information to third-party data brokers.</p>
+            <p><strong>Core Privacy Commitment:</strong> We do NOT collect, sell, lease, or monetize your personal identity or location data to third-party data brokers or marketing intermediaries.</p>
         </div>
 
-        <h2>1. Information Collection & Usage</h2>
-
-        <p><strong>A. Location Services Data</strong></p>
-        <p>Our Applications may request access to location data (GPS, cellular networks, or Wi-Fi positioning) to deliver essential app features, such as hyper-local weather predictions, severe storm alerts, rain radar maps, and nearby fuel price comparison.</p>
+        <h2>1. Location Data Collection & Processing</h2>
+        <p>Our weather and utility applications may request permission to access your device's geographical position (approximate or precise GPS coordinates) strictly for the following on-demand functionalities:</p>
         <ul>
-            <li>Location access is entirely optional and permission-based.</li>
-            <li>You can enable or disable location permissions at any time via your device settings.</li>
-            <li>Location coordinates are transmitted securely via HTTPS to query API endpoints in real-time and are <strong>never stored permanently</strong> on external servers.</li>
+            <li>Delivering localized current weather, forecasts, UV index, and rain alerts.</li>
+            <li>Centering the live Doppler rain radar map on your current area.</li>
+            <li>Displaying nearby fuel service stations and distance calculations in FuelSense.</li>
+        </ul>
+        <p><strong>Important Privacy Safeguards:</strong></p>
+        <ul>
+            <li>Location access is entirely optional and permission-gated by iOS and Android system dialogs.</li>
+            <li>Coordinates are sent ephemerally over encrypted HTTPS to weather/map APIs to fetch data and are <strong>never stored permanently or logged on our servers</strong>.</li>
+            <li>You can disable or revoke location permissions at any time in your device's Settings.</li>
         </ul>
 
-        <p><strong>B. Technical & Device Metrics</strong></p>
-        <p>Non-identifiable technical diagnostic data (such as OS version, device model, app crash logs, and display parameters) may be processed to ensure app stability and optimize performance.</p>
-
-        <h2>2. Third-Party Services & Integrations</h2>
-        <p>To provide accurate forecasts, map rendering, and app functionality, our Applications utilize trusted industry-standard SDKs and APIs:</p>
+        <h2>2. Third-Party Services & Advertising</h2>
+        <p>To provide high-quality weather radar data and support free app distribution, our Applications integrate compliant, industry-standard third-party SDKs:</p>
         <ul>
-            <li><strong>Weather & Map Providers:</strong> Open-Meteo API, RainViewer Radar, Sunrise-Sunset API.</li>
-            <li><strong>Monetization & Diagnostics:</strong> Google AdMob and Firebase Analytics (operating strictly under Apple App Store and Google Play privacy guidelines).</li>
+            <li><strong>Weather & Radar Providers:</strong> Open-Meteo API, RainViewer, Sunrise-Sunset API.</li>
+            <li><strong>Advertising:</strong> Google AdMob (Google Mobile Ads SDK). AdMob may use device identifiers (such as IDFA / GAID) in accordance with Apple's App Tracking Transparency (ATT) framework and Google Play policies to display compliant non-personalized or personalized ads.</li>
+            <li><strong>Crash & Performance Diagnostics:</strong> Firebase Crashlytics to monitor application stability and resolve bugs.</li>
         </ul>
 
-        <h2>3. Data Protection & Encryption</h2>
-        <p>All communication between our Applications and backend services is protected using <strong>HTTPS/TLS 1.3 protocol encryption</strong> to prevent unauthorized access or data interception.</p>
+        <h2>3. Data Security & Encryption</h2>
+        <p>All network data in transit between our Applications and external servers is secured using <strong>HTTPS/TLS 1.3 protocol encryption</strong> to prevent eavesdropping, interception, or unauthorized tampering.</p>
 
-        <h2>4. Children's Privacy</h2>
-        <p>Our Applications are designed for general audiences and do not knowingly collect or store personal data from children under 13 years of age.</p>
+        <h2>4. User Rights, Data Retention & Deletion (GDPR / CCPA)</h2>
+        <p>Because our applications operate account-free without requiring names, email logins, or phone numbers, we do not build user profiles or databases.</p>
+        <p><strong>Data Deletion:</strong> Any locally saved preferences (such as pinned favorite cities or recent searches) are stored on-device via local storage (SharedPreferences / UserDefaults). You can completely delete all stored data at any time by clearing the application cache in your device settings or by uninstalling the application.</p>
+        <p>To exercise your GDPR/CCPA rights or submit a privacy inquiry, you can email our Data Protection contact at: <a href="mailto:siscom.info@gmail.com" style="color: var(--accent-blue);">siscom.info@gmail.com</a>.</p>
 
-        <h2>5. Contact Us</h2>
-        <p>If you have any questions or feedback regarding this Privacy Policy, please contact our privacy officer:</p>
+        <h2>5. Children's Privacy (COPPA Compliance)</h2>
+        <p>Our Applications are designed for general audiences and do not knowingly collect personal information from children under the age of 13.</p>
+
+        <h2>6. Contact Developer</h2>
+        <p>If you have any questions or requests regarding this Privacy Policy or our applications, please contact us:</p>
         <p>
-            <strong>Developer:</strong> ADALINA / SISCOM<br>
-            <strong>Email:</strong> <a href="mailto:siscom.info@gmail.com" style="color: var(--accent-blue);">siscom.info@gmail.com</a><br>
+            <strong>Developer / Publisher:</strong> ADALINA / SISCOM<br>
+            <strong>Support Email:</strong> <a href="mailto:siscom.info@gmail.com" style="color: var(--accent-blue);">siscom.info@gmail.com</a><br>
             <strong>Website:</strong> <a href="https://fuelsense.fr" style="color: var(--accent-blue);">https://fuelsense.fr</a>
         </p>
 
         <div class="footer">
             &copy; 2026 ADALINA / SISCOM. All rights reserved. | 
-            <a href="support.html">Support Center</a> | 
-            <a href="terms.html">Terms of Service</a>
+            <a href="marketing.html">Marketing Portfolio</a> | 
+            <a href="support.html">Support Center</a>
         </div>
     </div>
 </body>
